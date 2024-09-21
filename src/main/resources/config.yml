@@ -1,0 +1,107 @@
+# ------------------------
+#  MarketPlace Plugin Configuration
+#  Created by: Amps
+#  Submission Date: Saturday September 21st 2024
+# ------------------------
+
+discord:
+  webhook_url: "https://discord.com/api/webhooks/your-webhook-id/your-webhook-token"
+
+# ------------------------
+#  Database Configuration
+# ------------------------
+database:
+  # Type of database to use (either 'sqlite' or 'mysql')
+  type: "sqlite"  # Change this to 'mysql' if you want to use MySQL
+
+  # MySQL configuration
+  mysql:
+    host: "localhost"        # MySQL host (typically localhost)
+    port: 3306               # MySQL port (default: 3306)
+    database: "marketplace"  # MySQL database name
+    username: "root"         # MySQL username
+    password: ""             # MySQL password
+
+  # SQLite configuration
+  sqlite:
+    file: "marketplace.db"   # Path to the SQLite database file (relative to plugin folder)
+
+# ------------------------
+#  GUI Configuration
+# ------------------------
+gui:
+
+  # Configuration for the Confirm Purchase GUI
+  confirm_purchase:
+    title: "&eConfirm Purchase"                 # Title of the confirmation menu
+    size: 9                                     # Size of the inventory (should be a multiple of 9)
+    confirm_item: "GREEN_CONCRETE"              # Item used to confirm the purchase
+    confirm_name: "&aConfirm Purchase"          # Name displayed for the confirm button
+    cancel_item: "RED_CONCRETE"                 # Item used to cancel the purchase
+    cancel_name: "&cCancel"                     # Name displayed for the cancel button
+    background: # Settings for the background items
+      enabled: true                             # Whether background items should be used
+      item: "BLACK_STAINED_GLASS_PANE"          # Material for the background item
+      name: "&7"                                # Name displayed for the background item
+
+  # Configuration for the Marketplace GUI
+  marketplace:
+    title: "&eMarketplace"                      # Title of the marketplace menu
+    size: 54                                    # Size of the inventory (should be a multiple of 9)
+    items_per_page: 45                          # Number of items to display per page
+    background: # Settings for the background items
+      enabled: true                             # Whether background items should be used
+      item: "BLACK_STAINED_GLASS_PANE"          # Material for the background item
+      name: "&7"                                # Name displayed for the background item
+
+  # Configuration for the Black Market GUI
+  blackmarket:
+    title: "&cBlack Market"                     # Title of the Black Market menu
+    size: 54                                    # Size of the inventory (should be a multiple of 9)
+    items_per_page: 45                          # Number of items to display per page
+    background: # Settings for the background items
+      enabled: true                             # Whether background items should be used
+      item: "BLACK_STAINED_GLASS_PANE"          # Material for the background item
+      name: "&7"                                # Name displayed for the background item
+
+  # Configuration for the Transaction GUI
+  transaction:
+    title: "&eTransaction History"              # Title of the transaction history menu
+    size: 9                                     # This shouldn't be touched.
+
+# ------------------------
+#  Messages Configuration
+# ------------------------
+messages:
+  sell_usage: "&eUsage: &a/sell <price>"
+  not_a_player: "&cOnly players can use this command."
+  no_item_in_hand: "&cYou must be holding an item to sell."
+  invalid_price: "&cPrice must be greater than zero."
+  non_numeric_price: "&cPlease enter a valid numeric price."
+  item_listed: "&aItem listed for sale successfully!"
+  error_listing_item: "&cAn error occurred while listing the item."
+  no_permission: "&cYou don't have permission to use this command."
+  config_reloaded: "&aMarketplace configuration reloaded successfully!"
+  non_player_use: "&cThis command can only be used by players."
+  no_transaction_history: "&cYou have no transaction history."
+  transaction_history_header: "&aYour Transaction History:"
+  transaction_format: "&eItem: &f{item} &ePrice: &f{price} &eDate: &f{date}"
+
+# ------------------------
+#  Logging Configuration
+# ------------------------
+logs:
+  item_listed: "Listed item for player {player} with price {price}."
+  error_listing_item: "Error listing item for player {player}."
+  retrieved_items: "Retrieved {count} items from the marketplace."
+  error_retrieving_items: "Error retrieving items from the marketplace."
+  removed_item: "Removed item from the marketplace."
+  remove_item_warning: "Attempted to remove item, but no rows were affected."
+  error_removing_item: "Error removing item from the marketplace."
+  retrieved_seller_uuid: "Retrieved seller UUID: {uuid}."
+  seller_uuid_not_found: "Seller UUID not found for item."
+  error_getting_seller_uuid: "Error getting seller UUID for item."
+  cleared_items: "All items have been removed from the database."
+  command_usage: "{player} used command: {command}"
+  non_player_use: "A non-player attempted to use a player command."
+  error_listing_item_command: "An error occurred while player {player} attempted to list an item."
