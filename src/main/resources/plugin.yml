@@ -18,3 +18,11 @@ commands:
     description: Reload the plugin configuration
     permission: marketplace.admin
     permission-message: "You don't have permission to use this command."
+  blackmarket:
+    description: Opens the Black Market GUI.
+    permission: blackmarket.use
+    permission-message: You do not have permission to use the Black Market.
+  blackmarketsell:
+    description: Sells an item in the Black Market.
+    permission: blackmarket.sell
+    permission-message: You do not have permission to sell in the Black Market.

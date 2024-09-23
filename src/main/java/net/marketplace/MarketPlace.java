@@ -3,9 +3,7 @@ package net.marketplace;
 import net.marketplace.commands.*;
 import net.marketplace.data.RedisCache;
 import net.marketplace.data.SQLiteConnector;
-import net.marketplace.gui.ConfirmPurchaseGUI;
-import net.marketplace.gui.MarketplaceGUI;
-import net.marketplace.gui.TransactionGUI;
+import net.marketplace.gui.*;
 import net.marketplace.listeners.PlayerJoinListener;
 import net.marketplace.utils.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
@@ -41,12 +39,17 @@ public final class MarketPlace extends JavaPlugin {
         getCommand("transactions").setExecutor(new TransactionsCommand(this));
         getCommand("wipedatabase").setExecutor(new WipeDatabaseCommand(this));
         getCommand("reloadmarketplace").setExecutor(new ReloadCommand(this));
+        getCommand("blackmarket").setExecutor(new BlackMarketCommand(this));
+        getCommand("blackmarketsell").setExecutor(new BlackMarketSellCommand(this));
 
         // Register events (as requested, unchanged)
         getServer().getPluginManager().registerEvents(new MarketplaceGUI(this), this);
         getServer().getPluginManager().registerEvents(new TransactionGUI(this), this);
         getServer().getPluginManager().registerEvents(new ConfirmPurchaseGUI(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new BlackMarketGUI(this), this);
+        getServer().getPluginManager().registerEvents(new BlackMarketConfirmationGUI(this), this);
+
     }
 
     @Override

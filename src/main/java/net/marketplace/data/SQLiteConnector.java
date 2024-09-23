@@ -62,31 +62,47 @@ public class SQLiteConnector {
     private void createTables() {
         try (Statement stmt = connection.createStatement()) {
             String dbType = plugin.getConfig().getString("database.type", "sqlite");
-            String createTableSQL;
+            String createItemsTableSQL;
+            String createBlackMarketItemsTableSQL;
 
             if (dbType.equalsIgnoreCase("mysql")) {
                 // MySQL table creation
-                createTableSQL = "CREATE TABLE IF NOT EXISTS items (" +
+                createItemsTableSQL = "CREATE TABLE IF NOT EXISTS items (" +
+                        "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                        "player_uuid VARCHAR(36), " +
+                        "item_data TEXT, " +
+                        "price DOUBLE)";
+
+                createBlackMarketItemsTableSQL = "CREATE TABLE IF NOT EXISTS black_market_items (" +
                         "id INT AUTO_INCREMENT PRIMARY KEY, " +
                         "player_uuid VARCHAR(36), " +
                         "item_data TEXT, " +
                         "price DOUBLE)";
             } else {
                 // SQLite table creation
-                createTableSQL = "CREATE TABLE IF NOT EXISTS items (" +
+                createItemsTableSQL = "CREATE TABLE IF NOT EXISTS items (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "player_uuid TEXT, " +
+                        "item_data TEXT, " +
+                        "price REAL)";
+
+                createBlackMarketItemsTableSQL = "CREATE TABLE IF NOT EXISTS black_market_items (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "player_uuid TEXT, " +
                         "item_data TEXT, " +
                         "price REAL)";
             }
 
-            stmt.executeUpdate(createTableSQL);
+            // Create both tables
+            stmt.executeUpdate(createItemsTableSQL);
+            stmt.executeUpdate(createBlackMarketItemsTableSQL);
             logger.info("Tables created successfully (if they didn't already exist).");
 
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error creating tables.", e);
         }
     }
+
 
     // Get database connection
     public Connection getConnection() {
